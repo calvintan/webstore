@@ -16,18 +16,17 @@
           <h1 v-text="sitename"></h1>
         </header>
         <div class="row product">
-          <div class="">
-            <figure>
-              <img :src="product.image" />
-            </figure>
-          </div>
-          <div class="">
-            <h1 v-text="product.title"></h1>
-            <p v-html="product.description"></p>
-            <p class="price">
-              {{ product.price | formatPrice }}
-            </p>
-          </div>
+          <figure>
+            <img :src="product.image" />
+          </figure>
+          <h1 v-text="product.title"></h1>
+          <p v-html="product.description"></p>
+          <p class="price">
+            {{ product.price | formatPrice }}
+          </p>
+          <button class="default" v-on:click="addToCart">
+            Add to cart
+          </button>
         </div>
       </main>
     </div>
@@ -43,7 +42,8 @@
             description: "Just <em>irresistable</em> goodness for you",
             price: 2000,
             image: "assets/images/product-fullsize.png"
-          }
+          },
+          cart: []
         },
         filters: {
           formatPrice: function(price) {
@@ -51,6 +51,11 @@
               return "";
             }
             return "$" + (price / 100).toFixed(2);
+          }
+        },
+        methods: {
+          addToCart: function() {
+            this.cart.push(this.product.id);
           }
         }
       });
