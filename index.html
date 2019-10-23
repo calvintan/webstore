@@ -11,16 +11,37 @@
   </head>
   <body>
     <div id="app">
-      <header>
-        <h1 v-text="sitename"></h1>
-      </header>
+      <main class="container">
+        <header>
+          <h1 v-text="sitename"></h1>
+        </header>
+        <div class="row product">
+          <div class="">
+            <figure>
+              <img :src="product.image" />
+            </figure>
+          </div>
+          <div class="">
+            <h1 v-text="product.title"></h1>
+            <p v-html="product.description"></p>
+            <p v-text="product.price" class="price"></p>
+          </div>
+        </div>
+      </main>
     </div>
 
     <script type="text/javascript">
       var webstore = new Vue({
         el: "#app",
         data: {
-          sitename: "Awesome webstore"
+          sitename: "Awesome webstore",
+          product: {
+            id: 1001,
+            title: "Food, 25lb bag",
+            description: "Just <em>irresistable</em> goodness for you",
+            price: 2000,
+            image: "assets/images/product-fullsize.png"
+          }
         }
       });
     </script>
