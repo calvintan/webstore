@@ -24,7 +24,9 @@
           <div class="">
             <h1 v-text="product.title"></h1>
             <p v-html="product.description"></p>
-            <p v-text="product.price" class="price"></p>
+            <p class="price">
+              {{ product.price | formatPrice }}
+            </p>
           </div>
         </div>
       </main>
@@ -41,6 +43,14 @@
             description: "Just <em>irresistable</em> goodness for you",
             price: 2000,
             image: "assets/images/product-fullsize.png"
+          }
+        },
+        filters: {
+          formatPrice: function(price) {
+            if (!parseInt(price)) {
+              return "";
+            }
+            return "$" + (price / 100).toFixed(2);
           }
         }
       });
